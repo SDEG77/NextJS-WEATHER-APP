@@ -9,7 +9,7 @@ export default function Navbar() {
   const links = [
     { href: "/", label: "Current Weather" },
     { href: "/past", label: "Past Weather" },
-    { href: "/forecast", label: "Forecasts" },
+    { href: "/users", label: "Users" },
   ]; 
 
   return (
