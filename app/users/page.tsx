@@ -1,14 +1,24 @@
 import { User } from "@/generated/prisma/client";
 import { prisma } from "@/utils/prisma";
+import "dotenv/config"
 
 export default async function UsersPage() {
-  const users = await prisma.user.findMany();
+  const { APP_URL } = process.env;
 
-  if (users.length === 0) {
+  const response = await fetch(`${APP_URL}/api/users`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const data = await response.json();
+
+  if (data.users.length === 0) {
     return (
       <div>
         <h1>Users List:</h1>
-        <p>No users found</p>
+        <p>{ data.message }</p>
       </div>
     )
   }
@@ -17,7 +27,7 @@ export default async function UsersPage() {
     <div>
       <h1>Users List:</h1>
       <ul>
-        { users.map((user: User) => {
+        { data.users.map((user: User) => {
           return (
             <li key={user.id}>
               {user.name} - {user.email}
