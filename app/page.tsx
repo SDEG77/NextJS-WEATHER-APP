@@ -1,4 +1,7 @@
 import "dotenv/config"
+import LeftWidget from "@/components/home-comps/LeftWidget";
+import RightWidget from "@/components/home-comps/RightWidget";
+import { dailyMetric } from "@/types/weather/dailyMetric";
 
 export default async function Home() {
   const { APP_URL } = process.env;
@@ -13,34 +16,32 @@ export default async function Home() {
   });
 
   const data = await request.json();
+  const metrics: dailyMetric = data.metrics;
 
-  if (request.status === 400) {
+  if (data.status === 400) {
     return (
-      <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans">
-        <main className="flex flex-col gap-4 items-center">
-          <h1 className="text-2xl"> Cabanatuan City, Nueva Ecija </h1>
-
-          <p>{data.message}</p>
-        </main>
-      </div>
+      <main className="relative z-10">
+        <div className="flex w-screen justify-between px-10 text-white">
+          Unable to get weather data
+        </div>
+      </main>
     );
   }
 
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans">
-      <main className="flex flex-col gap-4 items-center">
-        <h1 className="text-2xl"> Cabanatuan City, Nueva Ecija </h1>
-
-        <ol>
-          { 
-            data.metrics.map((metric: {label: string, data: string}) => {
-              return (
-                <li className="text-center" key={metric.label}>{metric.label}: {metric.data}</li>
-              );
-            })
-          }
-        </ol>
-      </main>
-    </div>
+    <main className="relative z-10">
+      <div className="flex w-screen justify-between px-10 py-6 text-white">
+        <LeftWidget 
+          weatherLabel={ metrics.weatherLabel }
+          weatherIcon={ metrics.weatherIcon }
+          temp={ metrics.temperature }
+        />
+        <RightWidget 
+          airPressure={ metrics.airPressure }
+          humidty={ metrics.humidity }
+          windSpeed={ metrics.windSpeed }
+        />
+      </div>
+    </main>
   );
 }

@@ -14,6 +14,7 @@ export type WeatherResponse = {
     relative_humidity_2m: string;
     weather_code: string;
     wind_speed_10m: string;
+    surface_pressure: string;
   };
 
   current: {
@@ -23,6 +24,7 @@ export type WeatherResponse = {
     relative_humidity_2m: number;
     weather_code: number;
     wind_speed_10m: number;
+    surface_pressure: number;
   };
 
   daily_units: {
@@ -30,6 +32,7 @@ export type WeatherResponse = {
     weather_code: string;
     temperature_2m_max: string;
     temperature_2m_min: string;
+    precipitation_probability_max: string;
   };
 
   daily: {
@@ -37,5 +40,6 @@ export type WeatherResponse = {
     weather_code: number[];
     temperature_2m_max: number[];
     temperature_2m_min: number[];
+    precipitation_probability_max: number[];
   };
 };
