@@ -32,7 +32,7 @@ export default function RootLayout({
         {/* <Navbar /> */}
 
         <Image 
-          className="object-fit brightness-50 z-0"
+          className="object-cover brightness-50 z-0"
           src="/weather-bgs/sunny-background.jpg"
           alt="A picture of a sunny background"
           fill
