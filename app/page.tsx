@@ -30,7 +30,7 @@ export default async function Home() {
 
   return (
     <main className="relative z-10">
-      <div className="flex w-screen justify-between px-10 py-6 text-white">
+      <div className="flex flex-col md:flex-row w-screen justify-between px-10 py-6 text-white">
         <LeftWidget 
           weatherLabel={ metrics.weatherLabel }
           weatherIcon={ metrics.weatherIcon }
@@ -40,6 +40,7 @@ export default async function Home() {
           airPressure={ metrics.airPressure }
           humidty={ metrics.humidity }
           windSpeed={ metrics.windSpeed }
+          rainChance={ metrics.rainChance }
         />
       </div>
     </main>
