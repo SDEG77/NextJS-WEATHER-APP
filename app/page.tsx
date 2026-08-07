@@ -1,6 +1,7 @@
 import "dotenv/config"
 import LeftWidget from "@/components/home-comps/LeftWidget";
 import RightWidget from "@/components/home-comps/RightWidget";
+import BottomWidget from "@/components/home-comps/BottomWidget";
 import { dailyMetric } from "@/types/weather/dailyMetric";
 
 export default async function Home() {
@@ -29,20 +30,33 @@ export default async function Home() {
   }
 
   return (
-    <main className="relative z-10">
-      <div className="flex flex-col md:flex-row w-screen justify-between px-10 py-6 text-white">
-        <LeftWidget 
-          weatherLabel={ metrics.weatherLabel }
-          weatherIcon={ metrics.weatherIcon }
-          temp={ metrics.temperature }
+    <main className="w-screen relative z-10 flex flex-col gap-10 px-10 py-6 text-white">
+        <section className="flex flex-row md:flex-row justify-between">
+          <LeftWidget 
+            weatherLabel={ metrics.weatherLabel }
+            weatherIcon={ metrics.weatherIcon }
+            temp={ metrics.temperature }
+          />
+          <RightWidget 
+            airPressure={ metrics.airPressure }
+            humidty={ metrics.humidity }
+            windSpeed={ metrics.windSpeed }
+            rainChance={ metrics.rainChance }
+          />
+        </section>
+        <BottomWidget
+          contents={[
+            {hour: "1AM", temp: "28°C"},
+            {hour: "2AM", temp: "28°C"},
+            {hour: "3AM", temp: "28°C"},
+            {hour: "4AM", temp: "28°C"},
+            {hour: "5AM", temp: "28°C"},
+            {hour: "6AM", temp: "28°C"},
+            {hour: "7AM", temp: "28°C"},
+            {hour: "8AM", temp: "28°C"},
+            {hour: "9AM", temp: "28°C"},
+          ]}
         />
-        <RightWidget 
-          airPressure={ metrics.airPressure }
-          humidty={ metrics.humidity }
-          windSpeed={ metrics.windSpeed }
-          rainChance={ metrics.rainChance }
-        />
-      </div>
     </main>
   );
 }
