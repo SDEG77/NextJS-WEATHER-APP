@@ -1,9 +1,10 @@
 "use client"
 
+import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper/types";
+import BottomWidgetControls from "./components/BottomWidgetControls";
 import "swiper/css";
-import { useRef } from "react";
 
 type props = {
   contents: {
@@ -12,7 +13,6 @@ type props = {
   } []
 }
 
-
 export default function BottomWidget({ 
   contents = [{
     hour: "no hour provided",
@@ -20,24 +20,14 @@ export default function BottomWidget({
   }]
 }: props) {
   const swiperRef = useRef<SwiperType | null>(null);
-  const firstContent = contents[0];
 
   return (
-    <section>
-      <div>
-        {/* Hour slider buttons */}
-        <div className="flex gap-4">
-          <button onClick={() => swiperRef.current.slidePrev()}>
-            <p>&lt;</p>
-          </button>
+    <section className="w-full flex flex-col overflow-x-hidden">
+      <BottomWidgetControls 
+        ref={swiperRef}
+      />
 
-          <button onClick={() => swiperRef.current.slideNext()}>
-            <p>&gt;</p>
-          </button>
-        </div>
-      </div>
-
-      <div className="flex items-center gap-8">
+      <div className="w-full overflow-x-hidden flex items-center gap-8">
         {/* Fixed first card */}
         <div className="w-36 shrink-0 rounded-xl bg-white/10 backdrop-blur-md p-6">
           <p className="text-lg">{contents[0].hour}</p>
@@ -47,7 +37,7 @@ export default function BottomWidget({
           </p>
 
           <p className="mt-4 text-lg">
-            Current
+            Currently
           </p>
         </div>
 
