@@ -45,17 +45,10 @@ export default async function Home() {
           />
         </section>
         <BottomWidget
-          contents={[
-            {hour: "1AM", temp: "28°C"},
-            {hour: "2AM", temp: "28°C"},
-            {hour: "3AM", temp: "28°C"},
-            {hour: "4AM", temp: "28°C"},
-            {hour: "5AM", temp: "28°C"},
-            {hour: "6AM", temp: "28°C"},
-            {hour: "7AM", temp: "28°C"},
-            {hour: "8AM", temp: "28°C"},
-            {hour: "9AM", temp: "28°C"},
-          ]}
+          contents={{
+            hours: metrics.hours,
+            temps: metrics.hourlyTemps,
+          }}
         />
     </main>
   );

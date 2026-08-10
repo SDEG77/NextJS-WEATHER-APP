@@ -27,6 +27,20 @@ export type WeatherResponse = {
     surface_pressure: number;
   };
 
+  hourly_units: {
+    time: string;
+    temperature_2m: string;
+    weather_code: string;
+    precipitation_probability: string;
+  };
+
+  hourly: {
+    time: string[];
+    temperature_2m: number[];
+    weather_code: number[];
+    precipitation_probability: number[];
+  };
+
   daily_units: {
     time: string;
     weather_code: string;
