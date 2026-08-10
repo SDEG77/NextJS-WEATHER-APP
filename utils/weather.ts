@@ -6,6 +6,7 @@ async function getWeather( longitude: number, latitude: number ): Promise<Weathe
     `?latitude=${latitude}` +
     `&longitude=${longitude}` +
     `&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,surface_pressure` +
+    `&hourly=temperature_2m,weather_code,precipitation_probability` +
     `&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max` +
     `&timezone=Asia/Manila`;
 

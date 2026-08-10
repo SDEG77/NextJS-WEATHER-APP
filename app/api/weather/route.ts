@@ -36,6 +36,8 @@ export async function GET(request: NextRequest) {
     windSpeed: `${ weather.current.wind_speed_10m } ${ weather.current_units.wind_speed_10m }`,
     airPressure: `${ weather.current.surface_pressure } ${ weather.current_units.surface_pressure }`,
     rainChance: `${ weather.daily.precipitation_probability_max[0] }%`,
+    hours: weather.hourly.time,
+    hourlyTemps: weather.hourly.temperature_2m,
     // through rain chances based on current hour
   };
 
