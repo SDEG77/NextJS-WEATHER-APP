@@ -1,6 +1,10 @@
 import type { WeatherResponse } from "@/types/weatherResponse";
 
-async function getWeather( longitude: number, latitude: number ): Promise<WeatherResponse> {
+async function getWeather(
+  longitude: number, 
+  latitude: number, 
+  day: string = new Date().toISOString().split('T')[0],
+): Promise<WeatherResponse> {
   const url =
     `https://api.open-meteo.com/v1/forecast` +
     `?latitude=${latitude}` +
@@ -8,6 +12,8 @@ async function getWeather( longitude: number, latitude: number ): Promise<Weathe
     `&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,surface_pressure` +
     `&hourly=temperature_2m,weather_code,precipitation_probability` +
     `&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max` +
+    `&start_date=${day}` +
+    `&end_date=${day}` +
     `&timezone=Asia/Manila`;
 
     const response = await fetch(url);

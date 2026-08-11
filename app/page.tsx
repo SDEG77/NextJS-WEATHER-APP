@@ -8,8 +8,9 @@ export default async function Home() {
   const { APP_URL } = process.env;
   const latitude = 15.5149;
   const longitude = 120.9913;
+  const day = new Date().toISOString().split('T')[0];
   
-  const request = await fetch(`${APP_URL}/api/weather?latitude=${latitude}&longitude=${longitude}`, {
+  const request = await fetch(`${APP_URL}/api/weather?latitude=${latitude}&longitude=${longitude}&day=${day}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
